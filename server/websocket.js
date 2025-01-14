@@ -6,7 +6,7 @@ const wss = new WebSocket.Server({ port: 30012 }, () => {
 });
 
 wss.on('connection', (ws) => {
-  ws.send("Chào mừng đến với WebSocket Server!");
+  ws.send("WS Build Up By ChuChu!");
 
   ws.on('message', (message) => {
     console.log(`Nhận tin nhắn từ client: ${message}`);

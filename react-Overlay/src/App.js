@@ -10,7 +10,7 @@ const App = () => {
       const parsedData = JSON.parse(event.data);
       if (parsedData.status === "New-Config") {
         console.log("Nội dung mới:", parsedData.data);
-        setMessages([`Nội dung mới: ${JSON.stringify(parsedData.data)}`]);
+        setMessages([`Data ws: ${JSON.stringify(parsedData.data)}`]);
       }
     };
 
