@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOL Game Settings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 min-h-screen flex items-center justify-center">
+  <div class="bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-4xl">
+    <h1 class="text-3xl font-bold text-center text-white mb-8">LOL Game Settings</h1>
+
+    <!-- Color Selection -->
+    <div class="grid grid-cols-2 gap-6">
+      <div>
+        <label for="blueColor" class="block text-sm font-medium text-gray-300 mb-2">Chọn màu xanh:</label>
+        <input 
+          type="color" 
+          id="blueColor" 
+          value="#0b849e" 
+          class="w-full h-10 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400">
+      </div>
+
+      <div>
+        <label for="redColor" class="block text-sm font-medium text-gray-300 mb-2">Chọn màu đỏ:</label>
+        <input 
+          type="color" 
+          id="redColor" 
+          value="#be1e37" 
+          class="w-full h-10 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-red-400">
+      </div>
+    </div>
+
+    <!-- Player Name Configuration -->
+    <div class="mt-8 grid grid-cols-2 gap-6">
+      <!-- Blue Team -->
+      <div>
+        <h2 class="text-lg font-semibold text-blue-400 mb-4">Đội Xanh</h2>
+        <ul id="blueTeam" class="space-y-2">
+          <li>
+            <input type="text" placeholder="Player 1" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+          </li>
+          <li>
+            <input type="text" placeholder="Player 2" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+          </li>
+          <li>
+            <input type="text" placeholder="Player 3" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+          </li>
+          <li>
+            <input type="text" placeholder="Player 4" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+          </li>
+          <li>
+            <input type="text" placeholder="Player 5" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+          </li>
+        </ul>
+      </div>
+
+      <!-- Red Team -->
+      <div>
+        <h2 class="text-lg font-semibold text-red-400 mb-4">Đội Đỏ</h2>
+        <ul id="redTeam" class="space-y-2">
+          <li>
+            <input type="text" placeholder="Player 6" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400">
+          </li>
+          <li>
+            <input type="text" placeholder="Player 7" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400">
+          </li>
+          <li>
+            <input type="text" placeholder="Player 8" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400">
+          </li>
+          <li>
+            <input type="text" placeholder="Player 9" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400">
+          </li>
+          <li>
+            <input type="text" placeholder="Player 10" class="w-full px-3 py-2 bg-gray-700 text-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400">
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Save Button -->
+    <button 
+      id="saveConfig" 
+      class="mt-6 w-full bg-green-500 text-white py-3 px-4 rounded-md font-medium hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400">
+      Lưu Config
+    </button>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
