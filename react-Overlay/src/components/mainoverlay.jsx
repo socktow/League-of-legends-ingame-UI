@@ -1,9 +1,10 @@
 import React from 'react'
+import Scoreboard from './scoreboard'
 
 const mainoverlay = () => {
   return (
     <div>
-      main overlay
+      <Scoreboard/>
     </div>
   )
 }
