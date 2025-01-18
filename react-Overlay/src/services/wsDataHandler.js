@@ -1,11 +1,7 @@
 export const handleWSData = (socketName, data) => {
-  // Kiểm tra xem dữ liệu có phải là chuỗi JSON hợp lệ không
   let parsedData;
-
-  // Chỉ thử parse nếu dữ liệu có vẻ như là JSON
   if (data && (data.startsWith("{") || data.startsWith("["))) {
     try {
-      // Cố gắng parse dữ liệu nếu nó là chuỗi JSON
       parsedData = JSON.parse(data);
     } catch (error) {
       // Nếu không thể parse, log ra cảnh báo
@@ -27,5 +23,5 @@ export const handleWSData = (socketName, data) => {
     return { type: "newConfig", value: parsedData.data };
   }
 
-  return null; // Nếu không khớp với điều kiện nào
+  return null;
 };

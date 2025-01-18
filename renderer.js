@@ -12,6 +12,16 @@ fetch("config.json")
     document.getElementById("redScore").value = data.redScore;
     document.getElementById("redTeamSubtext").value = data.redTeamSubText;
 
+    // Thêm giá trị cho avatar
+    const blueAvatarInput = document.getElementById("avatarblue");
+    const redAvatarInput = document.getElementById("avatarredURL");
+    if (data.blueAvatar) {
+      blueAvatarInput.value = data.blueAvatar; // Giả sử data.blueAvatar chứa đường dẫn đến ảnh
+    }
+    if (data.redAvatar) {
+      redAvatarInput.value = data.redAvatar; // Giả sử data.redAvatar chứa đường dẫn đến ảnh
+    }
+
     const playerNamesList = document.getElementById("playerNames");
     data.names.forEach((name) => {
       const li = document.createElement("li");
@@ -28,17 +38,13 @@ function savePlayerNames() {
   const playerNames = [];
   const blueTeamInputs = document.querySelectorAll("#blueTeam input");
   const redTeamInputs = document.querySelectorAll("#redTeam input");
-
-  // Lấy tên từ đội xanh
   blueTeamInputs.forEach((input, index) => {
-    playerNames.push(input.value.trim() || `Player ${index + 1}`); // Nếu không có tên mới, sử dụng tên mặc định
+    playerNames.push(input.value.trim() || `Player ${index + 1}`);
   });
 
-  // Lấy tên từ đội đỏ
   redTeamInputs.forEach((input, index) => {
-    playerNames.push(input.value.trim() || `Player ${index + 6}`); // Nếu không có tên mới, sử dụng tên mặc định
+    playerNames.push(input.value.trim() || `Player ${index + 6}`);
   });
-
   if (playerNames.length > 0) {
     console.log(playerNames);
   } else {
@@ -58,18 +64,29 @@ document.getElementById("saveConfig").addEventListener("click", () => {
     ),
   ];
 
+  const blueConfig = {
+    color: blueColor,
+    score: document.getElementById("blueScore").value,
+    teamName: document.getElementById("blueTeamName").value,
+    teamSubtext: document.getElementById("blueTeamSubtext").value,
+    avatar: document.getElementById("avatarblue").value,
+  };
+
+  const redConfig = {
+    color: redColor,
+    score: document.getElementById("redScore").value,
+    teamName: document.getElementById("redTeamName").value,
+    teamSubtext: document.getElementById("redTeamSubtext").value,
+    avatar: document.getElementById("avatarred").value,
+  };
+
   const config = {
-    blueColor,
-    redColor,
     playerNames,
-    blueScore: document.getElementById("blueScore").value,
-    blueTeamName: document.getElementById("blueTeamName").value,
-    blueTeamSubtext: document.getElementById("blueTeamSubtext").value,
-    redScore: document.getElementById("redScore").value,
-    redTeamName: document.getElementById("redTeamName").value,
-    redTeamSubtext: document.getElementById("redTeamSubtext").value,
+    blue: blueConfig,
+    red: redConfig,
   };
 
   // Gửi nội dung mới qua WebSocket
   ws.send(JSON.stringify({ action: "new-config", config }));
 });
+

@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 
 // Tạo WebSocket Server tại cổng 30012
 const wss = new WebSocket.Server({ port: 30012 }, () => {
-  console.log("WebSocket Server đang chạy tại ws://localhost:30012");
+  console.log("WebSocket Server đang chạy tại ws://localhost:30012/ws/dashboard");
 });
 
 wss.on('connection', (ws) => {

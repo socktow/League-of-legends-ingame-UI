@@ -1,33 +1,27 @@
-// MainOverlay.jsx
-import React, { useState, useEffect } from 'react';
-import Scoreboard from './scoreboard/scoreboard';
-import { createWebSocket } from '../services/wsService';
-import { handleWSData } from '../services/wsDataHandler';
-import { timeFormat } from '../services/services';
+import React, { useState } from "react";
+import Scoreboard from "./scoreboard/scoreboard";
+import useWebSocket from "../services/useWebSocket";
 
 const MainOverlay = () => {
-  const [gameTime, setGameTime] = useState(" ");
+  const [messageWS1, setMessageWS1] = useState(null);
+  const [gameTime, setGameTime] = useState("00:00");
 
-  useEffect(() => {
-    const socket2 = createWebSocket(
-      process.env.REACT_APP_WSBACKEND2,
-      (event) => {
-        const result = handleWSData("wsbackend2", event.data);
-        if (result?.type === "gameTime") {
-          setGameTime(timeFormat(result.value)); // Cập nhật gameTime
-        }
-      }
-    );
-
-    return () => {
-      socket2.close();
-    };
-  }, []);
+  // Cập nhật các team name từ WebSocket
+  useWebSocket(
+    process.env.REACT_APP_WSBACKEND1,
+    process.env.REACT_APP_WSBACKEND2,
+    setMessageWS1,
+    setGameTime
+  );
 
   return (
     <div>
-      {/* Truyền gameTime vào Scoreboard */}
-      <Scoreboard gameTime={gameTime} />
+      <hr />
+      <Scoreboard
+        gameTime={gameTime}
+        blueTeam={messageWS1?.blue || {}}
+        redTeam={messageWS1?.red || {}}
+      />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import BaronPowerPlay from "./layout/baronpowerplay";
 import MainScoreboard from "./layout/mainscoreboard";
 import SecondScoreboard from "./layout/secondscoreboard";
 
-const Scoreboard = ({ gameTime }) => {
+const Scoreboard = ({ gameTime, blueTeam, redTeam }) => {
   const [baronPowerPlayActive, setBaronPowerPlayActive] = useState(false);
   const [dragonPowerPlayActive, setDragonPowerPlayActive] = useState(false);
 
@@ -17,7 +17,7 @@ const Scoreboard = ({ gameTime }) => {
         <DragonPowerPlay isActive={dragonPowerPlayActive} />
         <DragonTime />
         <BaronPowerPlay isActive={baronPowerPlayActive} />
-        <MainScoreboard />
+        <MainScoreboard blueTeam={blueTeam} redTeam={redTeam} />
         <SecondScoreboard gameTime={gameTime} />
       </div>
     </div>
