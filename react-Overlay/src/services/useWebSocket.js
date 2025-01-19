@@ -1,30 +1,59 @@
-// services/useWebSocket.js
-import { useEffect } from "react";
-import { createWebSocket } from "./wsService";
-import { handleWSData } from "./wsDataHandler";
-import { timeFormat } from "./services";
+import { useEffect, useState } from 'react';
 
-const useWebSocket = (backend1URL, backend2URL, onMessage1, onMessage2) => {
+function useWebSocket(url1, url2) {
+  const [messageWS1, setMessageWS1] = useState(null);
+  const [messageWS2, setMessageWS2] = useState(null);
+
   useEffect(() => {
-    const socket1 = createWebSocket(backend1URL, (event) => {
-      const result = handleWSData("wsbackend1", event.data);
-      if (result?.type === "newConfig") {
-        onMessage1(result.value);
-      }
-    });
+    const socket1 = new WebSocket(url1);
+    const socket2 = new WebSocket(url2);
 
-    const socket2 = createWebSocket(backend2URL, (event) => {
-      const result = handleWSData("wsbackend2", event.data);
-      if (result?.type === "gameTime") {
-        onMessage2(timeFormat(result.value));
+    socket1.onmessage = (event) => {
+      try {
+        const jsonMessage = JSON.parse(event.data);
+        if (jsonMessage.status !== "new-config") {
+          setMessageWS1(jsonMessage);
+        }
+      } catch {
+        setMessageWS1(event.data);
       }
-    });
+    };
 
+    socket2.onmessage = (event) => {
+      try {
+        const jsonMessage = JSON.parse(event.data);
+        if (jsonMessage.type !== "keepAlive") {
+          setMessageWS2(jsonMessage);
+        }
+      } catch {
+        setMessageWS2(event.data);
+      }
+    };
+
+    socket1.onclose = () => {
+      console.log('WebSocket 1 closed');
+    };
+
+    socket2.onclose = () => {
+      console.log('WebSocket 2 closed');
+    };
+
+    socket1.onerror = (error) => {
+      console.error('WebSocket 1 Error:', error);
+    };
+
+    socket2.onerror = (error) => {
+      console.error('WebSocket 2 Error:', error);
+    };
+
+    // Clean up khi component unmount
     return () => {
       socket1.close();
       socket2.close();
     };
-  }, [backend1URL, backend2URL, onMessage1, onMessage2]);
-};
+  }, [url1, url2]);
+
+  return { messageWS1, messageWS2 };
+}
 
 export default useWebSocket;

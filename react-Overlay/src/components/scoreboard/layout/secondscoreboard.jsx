@@ -6,7 +6,7 @@ const SecondScoreboard = ({ gameTime }) => (
     id="second-scoreboard"
     className="absolute w-[530px] h-[30px] top-[71px] left-[695px] bg-[#3b89ff] flex justify-center items-center text-white relative"
   >
-    <span className="text-xl">{gameTime}</span> {/* Hiển thị gameTime từ props */}
+    <span className="text-xl">{gameTime}</span>
 
     <div className="absolute left-0 flex space-x-1">
       {[...Array(4)].map((_, index) => (

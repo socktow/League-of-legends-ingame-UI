@@ -16,14 +16,28 @@ const MainScoreboard = ({ blueTeam, redTeam }) => (
         className="w-[85px] h-[85px] object-contain filter brightness-0 invert"
       />
       <div className="flex items-center h-full mx-4">
-        <div className="text-gray-600 text-lg leading-none flex items-center">|</div>
+        <div className="text-gray-600 text-lg leading-none flex items-center">
+          |
+        </div>
       </div>
       <div className="text-white text-center w-[60px]">
-        <div className="text-lg font-bold truncate">{blueTeam.teamName || "BLUE"}</div>
-        <div className="text-sm font-bold text-gray-400 truncate">{blueTeam?.teamSubtext || "0-0"}</div>
+        <div className="text-lg font-bold truncate">
+          {blueTeam.teamName || "BLUE"}
+        </div>
+        <div className="text-sm font-bold text-gray-400 truncate">
+          {blueTeam?.teamSubtext || (
+            <img
+              className="w-[25px] h-[25px] mx-auto"
+              alt="VietNam Flag"
+              src="http://purecatamphetamine.github.io/country-flag-icons/3x2/VN.svg"
+            />
+          )}
+        </div>
       </div>
       <div className="flex items-center h-full mx-4">
-        <div className="text-gray-600 text-lg leading-none flex items-center">|</div>
+        <div className="text-gray-600 text-lg leading-none flex items-center">
+          |
+        </div>
       </div>
     </div>
 
@@ -37,14 +51,28 @@ const MainScoreboard = ({ blueTeam, redTeam }) => (
     {/* Team 2 Section */}
     <div className="flex items-center">
       <div className="flex items-center h-full mx-4">
-        <div className="text-gray-600 text-lg leading-none flex items-center">|</div>
+        <div className="text-gray-600 text-lg leading-none flex items-center">
+          |
+        </div>
       </div>
       <div className="text-white text-center w-[60px]">
-        <div className="text-lg font-bold truncate">{redTeam?.teamName || "RED"}</div>
-        <div className="text-sm font-bold text-gray-400 truncate">{redTeam?.teamSubtext || "0-0"}</div>
+        <div className="text-lg font-bold truncate">
+          {redTeam?.teamName || "RED"}
+        </div>
+        <div className="text-sm font-bold text-gray-400 truncate">
+          {redTeam?.teamSubtext || (
+            <img
+              className="w-[25px] h-[25px] mx-auto"
+              alt="VietNam Flag"
+              src="http://purecatamphetamine.github.io/country-flag-icons/3x2/VN.svg"
+            />
+          )}
+        </div>
       </div>
       <div className="flex items-center h-full mx-4">
-        <div className="text-gray-600 text-lg leading-none flex items-center">|</div>
+        <div className="text-gray-600 text-lg leading-none flex items-center">
+          |
+        </div>
       </div>
       <img
         src={logoteam2}

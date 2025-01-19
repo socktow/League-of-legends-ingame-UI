@@ -14,8 +14,8 @@ const Scoreboard = ({ gameTime, blueTeam, redTeam }) => {
     <div className="bg-transparent flex flex-row justify-center w-full">
       <div className="w-full h-[100px] relative">
         <BaronTime />
-        <DragonPowerPlay isActive={dragonPowerPlayActive} />
         <DragonTime />
+        <DragonPowerPlay isActive={dragonPowerPlayActive} />
         <BaronPowerPlay isActive={baronPowerPlayActive} />
         <MainScoreboard blueTeam={blueTeam} redTeam={redTeam} />
         <SecondScoreboard gameTime={gameTime} />
